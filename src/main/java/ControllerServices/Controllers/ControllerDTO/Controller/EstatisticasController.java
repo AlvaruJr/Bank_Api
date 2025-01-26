@@ -1,7 +1,7 @@
 package ControllerServices.Controllers.ControllerDTO.Controller;
 
 import ControllerServices.Controllers.ControllerDTO.DTO.EstatisticasResponseDto;
-import ControllerServices.Sevice.EstatisticasSevice;
+import ControllerServices.Service.EstatisticasService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/estatistica")
 @RequiredArgsConstructor
-@ApiResponse
 public class EstatisticasController {
-    public final EstatisticasSevice estatisticasSevice;
+    private final EstatisticasService estatisticasService; // Nome corrigido
 
     @GetMapping
     @Operation(summary = "Busca de transações", description = "Endpoint responsável por buscar estatísticas de transações com base no intervalo de tempo.")
@@ -27,7 +26,7 @@ public class EstatisticasController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     public ResponseEntity<EstatisticasResponseDto> buscarEstatisticas(
-            @RequestParam(value = "intervaloDeBusca",required = false,defaultValue = "60") Integer intervaloDeBusca){
-return ResponseEntity.ok(estatisticasSevice.calculoEstatisticas(intervaloDeBusca));
+            @RequestParam(value = "intervaloDeBusca", required = false, defaultValue = "60") Integer intervaloDeBusca) {
+        return ResponseEntity.ok(estatisticasService.calcularEstatisticas(intervaloDeBusca)); // Método renomeado
     }
 }

@@ -2,7 +2,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.4.1"
 	id("io.spring.dependency-management") version "1.1.7"
-	id("org.asciidoctor.jvm.convert") version "3.3.2"
+	id("org.asciidoctor.jvm.convert") version "3.3.1"
 }
 
 group = "Bank_Api"
@@ -33,8 +33,10 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.8.3")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.3")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.8.3")
+	implementation("org.hibernate.validator:hibernate-validator:8.0.1.Final")
+
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

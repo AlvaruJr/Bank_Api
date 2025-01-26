@@ -31,11 +31,10 @@ private final TransacaoService transacaoService;
         transacaoService.adicionarTransacoes(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
-    @DeleteMapping
-    @Operation(description = "Endpoint responsável por deletar de transações .")
+    @GetMapping
+    @Operation(description = "Endpoint responsável por buscar estatísticas de transações com base no intervalo de tempo.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Deletado com sucesso"),
+            @ApiResponse(responseCode = "200", description = "Estatísticas obtidas com sucesso"),
             @ApiResponse(responseCode = "400", description = "Erro nos parâmetros fornecidos"),
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
