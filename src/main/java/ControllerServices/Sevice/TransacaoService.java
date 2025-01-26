@@ -41,7 +41,7 @@ public class TransacaoService {
     public List<TransacaoRequestDTO> buscarTransacoes(Integer intervaloDeTempo){
         log.info("Iniciado busca po intervalo de tempo");
 
-        OffsetDateTime dataHoraintervalo =OffsetDateTime.now().minusSeconds(intervaloDeTempo);
+        OffsetDateTime dataHoraintervalo = OffsetDateTime.now().minusSeconds(intervaloDeTempo);
         return listaDeTransacoes.stream().filter(transacoes -> transacoes.dataHora()
                 .isAfter(dataHoraintervalo)).toList();
     }
