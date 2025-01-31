@@ -1,7 +1,7 @@
 package ControllerServices.Controllers.ControllerDTO.Controller;
 
 import ControllerServices.Controllers.ControllerDTO.DTO.TransacaoRequestDTO;
-import ControllerServices.Sevice.TransacaoService;
+import ControllerServices.Service.TransacaoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

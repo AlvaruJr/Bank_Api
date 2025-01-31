@@ -1,7 +1,7 @@
 package ControllerServices.Service;
 
 import ControllerServices.Controllers.ControllerDTO.DTO.TransacaoRequestDTO;
-import ControllerServices.Infraststructure.Exceptions.UnprocessableEntity;
+import ControllerServices.Infrastructure.Exceptions.UnprocessableEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
