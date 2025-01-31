@@ -1,4 +1,4 @@
-package ControllerServices.Infraststructure.Exceptions;
+package ControllerServices.Infrastructure.Exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

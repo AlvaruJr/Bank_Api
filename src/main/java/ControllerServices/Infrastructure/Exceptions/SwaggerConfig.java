@@ -1,4 +1,4 @@
-package ControllerServices.Infraststructure.Exceptions;
+package ControllerServices.Infrastructure.Exceptions;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
