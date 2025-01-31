@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/transacao")
 @RestController
 @ApiResponse
-
 public class TransacaoController {
-
-private final TransacaoService transacaoService;
+    private final TransacaoService transacaoService;
 
     @PostMapping
     @Operation(description = "Enpoint responsavel por Adicinar transação")
@@ -27,18 +25,18 @@ private final TransacaoService transacaoService;
             @ApiResponse(responseCode = "422", description = "Erro nos parâmetros fornecidos"),
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
-    public ResponseEntity<Void> adicionarTransacao(@RequestBody TransacaoRequestDTO dto){
+    public ResponseEntity<Void> adicionarTransacao(@RequestBody TransacaoRequestDTO dto) {
         transacaoService.adicionarTransacoes(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-    @GetMapping
-    @Operation(description = "Endpoint responsável por buscar estatísticas de transações com base no intervalo de tempo.")
+
+    @DeleteMapping // Mudança de @GetMapping para @DeleteMapping para deletar transações
+    @Operation(description = "Endpoint responsável por deletar todas as transações.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Estatísticas obtidas com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Erro nos parâmetros fornecidos"),
+            @ApiResponse(responseCode = "200", description = "Transações deletadas com sucesso"),
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
-    public ResponseEntity<Void> deletarTransacoes(){
+    public ResponseEntity<Void> deletarTransacoes() {
         transacaoService.limparTransacoes();
         return ResponseEntity.ok().build();
     }
