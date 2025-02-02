@@ -41,11 +41,16 @@ public class TransacaoService {
     public List<TransacaoRequestDTO> buscarTransacoes(Integer intervaloDeTempo) {
         log.info("Iniciado busca por intervalo de tempo");
 
-        OffsetDateTime dataHoraIntervalo = OffsetDateTime.now().minusSeconds(intervaloDeTempo);
-        log.info("Intervalo de busca: {}", dataHoraIntervalo);
+        OffsetDateTime agora = OffsetDateTime.now();
+        OffsetDateTime dataHoraIntervalo = agora.minusSeconds(intervaloDeTempo);
+        log.info("Intervalo de busca: de {} até {}", dataHoraIntervalo, agora);
 
         List<TransacaoRequestDTO> transacoesFiltradas = listaDeTransacoes.stream()
-                .filter(transacao -> transacao.dataHora().isAfter(dataHoraIntervalo))
+                .filter(transacao -> {
+                    boolean depoisDoIntervalo = transacao.dataHora().isAfter(dataHoraIntervalo);
+                    log.info("Transação {} com dataHora {} está depois do intervalo? {}", transacao, transacao.dataHora(), depoisDoIntervalo);
+                    return depoisDoIntervalo;
+                })
                 .toList();
 
         log.info("Número de transações encontradas: {}", transacoesFiltradas.size());
