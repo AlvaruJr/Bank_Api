@@ -12,10 +12,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EstatisticasService {
 
-    public final TransacaoService transacaoService;
+    private final TransacaoService transacaoService;
 
-    public EstatisticasResponseDto calcularEstatisticas(Integer intervaloDeTempo) { // Método renomeado
+    public EstatisticasResponseDto calcularEstatisticas(Integer intervaloDeTempo) {
         List<TransacaoRequestDTO> transacoes = transacaoService.buscarTransacoes(intervaloDeTempo);
+
+        if (transacoes.isEmpty()) {
+            return new EstatisticasResponseDto(0L, 0.0, 0.0, 0.0, 0.0);
+        }
+
         DoubleSummaryStatistics estatisticasTransacoes = transacoes.stream()
                 .mapToDouble(TransacaoRequestDTO::valor)
                 .summaryStatistics();

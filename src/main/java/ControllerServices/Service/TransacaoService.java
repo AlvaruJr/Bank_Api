@@ -25,7 +25,7 @@ public class TransacaoService {
         }
 
         if (dto.valor() < 0) {
-            log.error("Trasação não pode ser menor que ZERO");
+            log.error("Transação não pode ser menor que ZERO");
             throw new UnprocessableEntity("Transação não pode ser menor que ZERO");
         }
         listaDeTransacoes.add(dto);
@@ -42,8 +42,13 @@ public class TransacaoService {
         log.info("Iniciado busca por intervalo de tempo");
 
         OffsetDateTime dataHoraIntervalo = OffsetDateTime.now().minusSeconds(intervaloDeTempo);
-        log.info("Retorno das lista com sucesso");
-        return listaDeTransacoes.stream().filter(transacoes -> transacoes.dataHora()
-                .isAfter(dataHoraIntervalo)).toList();
+        log.info("Intervalo de busca: {}", dataHoraIntervalo);
+
+        List<TransacaoRequestDTO> transacoesFiltradas = listaDeTransacoes.stream()
+                .filter(transacao -> transacao.dataHora().isAfter(dataHoraIntervalo))
+                .toList();
+
+        log.info("Número de transações encontradas: {}", transacoesFiltradas.size());
+        return transacoesFiltradas;
     }
 }

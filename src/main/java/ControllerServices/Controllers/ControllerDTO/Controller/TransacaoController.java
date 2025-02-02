@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/transacao")
 @RestController
-@ApiResponse
 public class TransacaoController {
     private final TransacaoService transacaoService;
 
@@ -30,7 +29,7 @@ public class TransacaoController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @DeleteMapping // Mudança de @GetMapping para @DeleteMapping para deletar transações
+    @DeleteMapping
     @Operation(description = "Endpoint responsável por deletar todas as transações.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Transações deletadas com sucesso"),
